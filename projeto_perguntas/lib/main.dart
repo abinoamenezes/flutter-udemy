@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'questao.dart';
+import 'resposta.dart';
 
 main() {
   runApp(PerguntaApp());
@@ -19,7 +20,13 @@ class _PerguntaAppState extends State<PerguntaApp> {
 
   @override
   Widget build(BuildContext context) {
-    final perguntas = ['Qual é seu animal favorito?', 'Qual sua cor favorita?'];
+    final perguntas = [
+      {
+        'texto': 'Qual é o seu animal favortio?',
+        'Resposta': ['Dogs', 'Cats', 'Whale', 'Giraffe']
+      },
+      {'texto': ''}
+    ];
     return MaterialApp(
         home: Scaffold(
             appBar: AppBar(
@@ -28,18 +35,9 @@ class _PerguntaAppState extends State<PerguntaApp> {
             body: Column(
               children: [
                 Questao(perguntas[_perguntaSelecionada]),
-                ElevatedButton(
-                  child: Text('resposta 1 '),
-                  onPressed: _responder,
-                ),
-                ElevatedButton(
-                  child: Text('resposta 2 '),
-                  onPressed: _responder,
-                ),
-                ElevatedButton(
-                  child: Text('resposta 3 '),
-                  onPressed: _responder,
-                )
+                Resposta('Reposta 1', _responder),
+                Resposta('Reposta 2 ', _responder),
+                Resposta('Reposta 3', _responder)
               ],
             )));
   }
