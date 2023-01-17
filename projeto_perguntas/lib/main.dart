@@ -25,8 +25,23 @@ class _PerguntaAppState extends State<PerguntaApp> {
         'texto': 'Qual é o seu animal favortio?',
         'Resposta': ['Dogs', 'Cats', 'Whale', 'Giraffe']
       },
-      {'texto': ''}
+      {
+        'texto': 'Qual a sua cor favorita?',
+        'Resposta': ['white', 'black', 'red', 'blue']
+      },
+      {
+        'texto': 'Qual seu professor preferido?',
+        'Resposta': ['ceça', 'cicéro', 'Roberta', 'Clevinton']
+      }
     ];
+
+    List<Widget> resposta = [];
+
+    for (String respostaPergunta
+        in perguntas[_perguntaSelecionada]['Resposta'] as List) {
+      resposta.add(Resposta(respostaPergunta, _responder));
+    }
+
     return MaterialApp(
         home: Scaffold(
             appBar: AppBar(
@@ -34,10 +49,8 @@ class _PerguntaAppState extends State<PerguntaApp> {
             ),
             body: Column(
               children: [
-                Questao(perguntas[_perguntaSelecionada]),
-                Resposta('Reposta 1', _responder),
-                Resposta('Reposta 2 ', _responder),
-                Resposta('Reposta 3', _responder)
+                Questao(perguntas[_perguntaSelecionada]['texto'] as String),
+                ...resposta,
               ],
             )));
   }

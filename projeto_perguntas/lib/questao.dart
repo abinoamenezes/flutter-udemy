@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class Questao extends StatelessWidget {
   final texto;
 
-  Questao(this.texto);
+  const Questao(this.texto, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +11,7 @@ class Questao extends StatelessWidget {
       width: double.infinity,
       child: Text(
         texto,
-        style: TextStyle(fontSize: 23),
+        style: const TextStyle(fontSize: 23),
         textAlign: TextAlign.center,
       ),
     );
