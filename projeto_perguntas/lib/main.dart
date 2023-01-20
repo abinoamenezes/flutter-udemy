@@ -13,15 +13,30 @@ class _PerguntaAppState extends State<PerguntaApp> {
   final perguntas = const [
     {
       'texto': 'Qual é o seu animal favortio?',
-      'Resposta': ['Dogs', 'Cats', 'Whale', 'Giraffe']
+      'Resposta': [
+        'Dogs',
+        'Cats',
+        'Whale',
+        'Giraffe',
+      ]
     },
     {
       'texto': 'Qual a sua cor favorita?',
-      'Resposta': ['white', 'black', 'red', 'blue']
+      'Resposta': [
+        'white',
+        'black',
+        'red',
+        'blue',
+      ]
     },
     {
       'texto': 'Qual seu professor preferido?',
-      'Resposta': ['ceça', 'cicéro', 'Roberta', 'Clevinton']
+      'Resposta': [
+        'ceça',
+        'cicéro',
+        'Roberta',
+        'Clevinton',
+      ]
     }
   ];
 
