@@ -5,7 +5,7 @@ import 'package:projeto_perguntas/resposta.dart';
 class Questionario extends StatelessWidget {
   final perguntas;
   final texto;
-  final void Function() Fresponder;
+  final void Function(int) Fresponder;
   List respostas;
   Questionario(
       {super.key,
@@ -18,7 +18,8 @@ class Questionario extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(children: [
       Questao(perguntas),
-      ...respostas.map((texto) => Resposta(texto, Fresponder))
+      ...respostas.map((resp) =>
+          Resposta(resp['texto'], () => Fresponder(resp['pontuação'])))
     ]);
   }
 }

@@ -10,42 +10,45 @@ main() {
 
 class _PerguntaAppState extends State<PerguntaApp> {
   var _perguntaSelecionada = 0;
+  int pontuacaoTotal = 0;
   final perguntas = const [
     {
       'texto': 'Qual é o seu animal favortio?',
       'Resposta': [
-        'Dogs',
-        'Cats',
-        'Whale',
-        'Giraffe',
+        {'texto': 'Dogs', 'pontuação': 10},
+        {'texto': 'Cats', 'pontuação': 3},
+        {'texto': 'Whale', 'pontuação': 2},
+        {'texto': 'Giraffe', 'pontuação': 1},
       ]
     },
     {
       'texto': 'Qual a sua cor favorita?',
       'Resposta': [
-        'white',
-        'black',
-        'red',
-        'blue',
+        {'texto': 'white', 'pontuação': 8},
+        {'texto': 'black', 'pontuação': 10},
+        {'texto': 'red', 'pontuação': 10},
+        {'texto': 'blue', 'pontuação': 10},
       ]
     },
     {
       'texto': 'Qual seu professor preferido?',
       'Resposta': [
-        'ceça',
-        'cicéro',
-        'Roberta',
-        'Clevinton',
+        {'texto': 'ceça', 'pontuação': 0},
+        {'texto': 'cicéro', 'pontuação': 5},
+        {'texto': 'Roberta', 'pontuação': 3},
+        {'texto': 'Clevinton', 'pontuação': 10},
       ]
     }
   ];
 
-  void _responder() {
+  void _responder(int pontos) {
     if (temPerguntaSelecionada) {
       setState(() {
         _perguntaSelecionada++;
+        pontuacaoTotal += pontos;
       });
     }
+    print(pontuacaoTotal);
   }
 
   bool get temPerguntaSelecionada {
@@ -54,8 +57,8 @@ class _PerguntaAppState extends State<PerguntaApp> {
 
   @override
   Widget build(BuildContext context) {
-    List<String> resposta = temPerguntaSelecionada
-        ? perguntas[_perguntaSelecionada]['Resposta'] as List<String>
+    List<Map<String, Object>> resposta = temPerguntaSelecionada
+        ? perguntas[_perguntaSelecionada].cast()['Resposta']
         : [];
 
     return MaterialApp(
@@ -69,7 +72,7 @@ class _PerguntaAppState extends State<PerguntaApp> {
                 texto: perguntas[_perguntaSelecionada]['Resposta'],
                 Fresponder: _responder,
                 respostas: resposta)
-            : Resultado(),
+            : Resultado(pontos: pontuacaoTotal),
       ),
     );
   }
