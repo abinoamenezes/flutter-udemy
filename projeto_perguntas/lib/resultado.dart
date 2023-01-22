@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 
 class Resultado extends StatelessWidget {
   final int pontos;
+  final void Function() reiniciaQuestionario;
 
-  const Resultado({super.key, required this.pontos});
+  const Resultado(
+      {super.key, required this.pontos, required this.reiniciaQuestionario});
 
   String get fraseResultado {
     if (pontos >= 12) {
@@ -15,8 +17,12 @@ class Resultado extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text(fraseResultado, style: const TextStyle(fontSize: 20)),
+    return Column(
+      children: [
+        Center(
+          child: Text(fraseResultado, style: const TextStyle(fontSize: 20)),
+        ),
+      ],
     );
   }
 }

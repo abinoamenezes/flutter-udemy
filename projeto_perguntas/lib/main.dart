@@ -10,7 +10,7 @@ main() {
 
 class _PerguntaAppState extends State<PerguntaApp> {
   var _perguntaSelecionada = 0;
-  int pontuacaoTotal = 0;
+  int _pontuacaoTotal = 0;
   final perguntas = const [
     {
       'texto': 'Qual é o seu animal favortio?',
@@ -41,14 +41,20 @@ class _PerguntaAppState extends State<PerguntaApp> {
     }
   ];
 
+  void reiniciarQuestionaio() {
+    setState(() {
+      _perguntaSelecionada = 0;
+      _pontuacaoTotal = 0;
+    });
+  }
+
   void _responder(int pontos) {
     if (temPerguntaSelecionada) {
       setState(() {
         _perguntaSelecionada++;
-        pontuacaoTotal += pontos;
+        _pontuacaoTotal += pontos;
       });
     }
-    print(pontuacaoTotal);
   }
 
   bool get temPerguntaSelecionada {
@@ -72,7 +78,9 @@ class _PerguntaAppState extends State<PerguntaApp> {
                 texto: perguntas[_perguntaSelecionada]['Resposta'],
                 Fresponder: _responder,
                 respostas: resposta)
-            : Resultado(pontos: pontuacaoTotal),
+            : Resultado(
+                pontos: _pontuacaoTotal,
+                reiniciaQuestionario: reiniciarQuestionaio),
       ),
     );
   }
