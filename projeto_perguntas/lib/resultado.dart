@@ -18,10 +18,13 @@ class Resultado extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Center(
           child: Text(fraseResultado, style: const TextStyle(fontSize: 20)),
         ),
+        TextButton(
+            onPressed: reiniciaQuestionario, child: const Text('Reiniciar?'))
       ],
     );
   }
