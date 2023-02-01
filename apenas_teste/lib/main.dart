@@ -1,3 +1,4 @@
+import 'package:apenas_teste/pages/loginPage.dart';
 import 'package:flutter/material.dart';
 
 void main(List<String> args) {
@@ -10,19 +11,10 @@ class Myapp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-        body: Column(
-          children: [
-            Row(
-              children: [
-                Card(
-                  elevation: 5,
-                )
-              ],
-            )
-          ],
-        ),
-      ),
+      title: 'dog life',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(primarySwatch: Colors.deepOrange),
+      home: LoginPage(),
     );
   }
 }
