@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 class InsertTrasaction extends StatelessWidget {
   final titleController = TextEditingController();
   final valueController = TextEditingController();
-  InsertTrasaction({super.key});
+  InsertTrasaction({super.key, required this.submit});
+
+  final void Function(String title, double value) submit;
 
   @override
   Widget build(BuildContext context) {
@@ -26,8 +28,10 @@ class InsertTrasaction extends StatelessWidget {
               children: [
                 TextButton(
                     onPressed: () {
-                      print(titleController.text);
-                      print(valueController.text);
+                      final title = titleController.text;
+                      final value =
+                          double.tryParse(valueController.text) ?? 0.0;
+                      submit(title, value);
                     },
                     child: const Text('Nova transação',
                         style: TextStyle(color: Colors.purple))),

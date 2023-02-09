@@ -38,7 +38,12 @@ class _TransactionUsersState extends State<TransactionUsers> {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: [TransactionList(trasaction: transaction), InsertTrasaction()],
+      children: [
+        InsertTrasaction(
+          submit: addTransaction,
+        ),
+        TransactionList(trasaction: transaction),
+      ],
     );
   }
 }
