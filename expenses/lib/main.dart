@@ -1,5 +1,6 @@
 import 'package:expenses/componetes/insert_transaction.dart';
 import 'package:expenses/componetes/lista_transaction.dart';
+import 'package:expenses/componetes/transactionUSers.dart';
 import 'package:expenses/models/transaction.dart';
 import 'package:flutter/material.dart';
 
@@ -18,6 +19,8 @@ class MyHomePage extends StatelessWidget {
   final titleController = TextEditingController();
   final valueController = TextEditingController();
 
+  MyHomePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,7 +37,7 @@ class MyHomePage extends StatelessWidget {
                 child: Text('Gráfico'),
               ),
             ),
-            InsertTrasaction()
+            TransactionUsers()
           ],
         ));
   }
