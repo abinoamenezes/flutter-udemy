@@ -31,8 +31,8 @@ class MyHomePage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Container(
-                child: const Card(
+              const SizedBox(
+                child: Card(
                   color: Colors.blue,
                   elevation: 5,
                   child: Text('Gráfico'),

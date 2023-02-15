@@ -7,6 +7,17 @@ class InsertTrasaction extends StatelessWidget {
 
   final void Function(String title, double value) submit;
 
+  _submeterTransaction() {
+    final title = titleController.text;
+    final value = double.tryParse(valueController.text) ?? 0.0;
+
+    if (title.isEmpty || value <= 0) {
+      return;
+    }
+
+    submit(title, value);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -18,21 +29,20 @@ class InsertTrasaction extends StatelessWidget {
             TextField(
               controller: titleController,
               decoration: const InputDecoration(labelText: 'Título'),
+              onSubmitted: (value) => _submeterTransaction(),
             ),
             TextField(
               controller: valueController,
               decoration: const InputDecoration(labelText: 'Valor (R\$)'),
+              onSubmitted: (value) => _submeterTransaction(),
+              keyboardType:
+                  const TextInputType.numberWithOptions(decimal: true),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 TextButton(
-                    onPressed: () {
-                      final title = titleController.text;
-                      final value =
-                          double.tryParse(valueController.text) ?? 0.0;
-                      submit(title, value);
-                    },
+                    onPressed: _submeterTransaction,
                     child: const Text('Nova transação',
                         style: TextStyle(color: Colors.purple))),
               ],
