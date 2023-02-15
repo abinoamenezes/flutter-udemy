@@ -3,6 +3,7 @@ import 'package:expenses/componetes/lista_transaction.dart';
 import 'package:expenses/componetes/transactionUSers.dart';
 import 'package:expenses/models/transaction.dart';
 import 'package:flutter/material.dart';
+import 'dart:math';
 
 main() => runApp(const ExpenseApp());
 
@@ -15,32 +16,78 @@ class ExpenseApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends StatefulWidget {
+  MyHomePage({super.key});
+
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
   final titleController = TextEditingController();
+
   final valueController = TextEditingController();
 
-  MyHomePage({super.key});
+  final List<Transaction> transaction = [
+    Transaction(
+        date: DateTime.now(),
+        id: 't1',
+        title: ' Nova Camisa do corinthians',
+        value: 280.76),
+    Transaction(
+        date: DateTime.now(), id: 't2', title: 'Conta de Luz', value: 110.2)
+  ];
+
+  addTransaction(String title, double valor) {
+    final newTrasanction = Transaction(
+        date: DateTime.now(),
+        id: Random().nextDouble().toString(),
+        title: title,
+        value: valor);
+
+    setState(() {
+      transaction.add(newTrasanction);
+    });
+  }
+
+  _openModalFormulario(BuildContext context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (context) => InsertTrasaction(submit: addTransaction));
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('Despesas pessoais'),
-        ),
-        body: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              const SizedBox(
-                child: Card(
-                  color: Colors.blue,
-                  elevation: 5,
-                  child: Text('Gráfico'),
-                ),
+      appBar: AppBar(
+        title: const Text('Despesas pessoais'),
+        actions: [
+          IconButton(
+            onPressed: () => _openModalFormulario(context),
+            icon: const Icon(Icons.add),
+          )
+        ],
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            const SizedBox(
+              child: Card(
+                color: Colors.blue,
+                elevation: 5,
+                child: Text('Gráfico'),
               ),
-              TransactionUsers()
-            ],
-          ),
-        ));
+            ),
+            TransactionList(trasaction: transaction),
+          ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => _openModalFormulario(context),
+        child: const Icon(Icons.add),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+    );
   }
 }
