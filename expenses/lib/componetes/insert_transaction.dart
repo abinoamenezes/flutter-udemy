@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
 
-class InsertTrasaction extends StatelessWidget {
-  final titleController = TextEditingController();
-  final valueController = TextEditingController();
+class InsertTrasaction extends StatefulWidget {
   InsertTrasaction({super.key, required this.submit});
 
   final void Function(String title, double value) submit;
+
+  @override
+  State<InsertTrasaction> createState() => _InsertTrasactionState();
+}
+
+class _InsertTrasactionState extends State<InsertTrasaction> {
+  final titleController = TextEditingController();
+
+  final valueController = TextEditingController();
 
   _submeterTransaction() {
     final title = titleController.text;
@@ -15,7 +22,7 @@ class InsertTrasaction extends StatelessWidget {
       return;
     }
 
-    submit(title, value);
+    widget.submit(title, value);
   }
 
   @override
